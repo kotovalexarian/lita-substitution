@@ -11,10 +11,12 @@ module Lita
     #
     class Substitution < Handler
       route(/[^\$]\$\(/, command: true, substitution: true) do |response|
-        command, substitutions = parse(response.message.body)
+        message = response.message
+        source = message.source
+        command, substitutions = parse(message.body)
 
         substitutions.each do |position, subcommand|
-          channel = Channel.new(robot, subcommand, response.message.source)
+          channel = Channel.new(robot, subcommand, source)
           channel.command!
 
           result = ''
@@ -27,8 +29,14 @@ module Lita
           command.insert(position, result)
         end
 
-        response.reply(command.inspect)
-        response.reply(substitutions.inspect)
+        channel = Channel.new(robot, command, source)
+        channel.command!
+
+        channel.on_reply do |*strings|
+          response.reply(strings.flatten.join("\n"))
+        end
+
+        robot.receive(channel)
       end
 
     protected
