@@ -7,6 +7,7 @@ Lita.load_locales Dir[File.expand_path(
 )]
 
 require 'lita/handlers/substitution'
+require 'lita/extensions/substitution'
 
 Lita::Handlers::Substitution.template_root File.expand_path(
   File.join('..', '..', 'templates'),
