@@ -1,11 +1,8 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'lita/substitution/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'lita-substitution'
-  spec.version       = Lita::Substitution::VERSION
+  spec.version       = '0.0.0'
   spec.authors       = ['Braiden Vasco']
   spec.email         = ['braiden-vasco@users.noreply.github.com']
 
@@ -15,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   if spec.respond_to?(:metadata)
+    spec.metadata['lita_plugin_type'] = 'handler'
   else
     fail 'RubyGems 2.0 or newer is required.'
   end
@@ -33,4 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.3'
   spec.add_development_dependency 'simplecov', '~> 0.10'
   spec.add_development_dependency 'github_changelog_generator', '~> 1.6'
+
+  spec.add_runtime_dependency 'lita', '~> 4.6'
 end
