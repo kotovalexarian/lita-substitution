@@ -14,7 +14,8 @@ module Lita
         message = payload[:message]
         route = payload[:route]
 
-        !(message.body =~ /[^\$]\$\(/) || route.extensions[:substitution]
+        !(message.body =~ Lita::Handlers::Substitution::REGEXP) ||
+          route.extensions[:substitution]
       end
 
       Lita.register_hook(:validate_route, self)
