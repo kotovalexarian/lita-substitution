@@ -1,4 +1,4 @@
-require "lita/substitution/version"
+require 'lita/substitution/version'
 
 module Lita
   module Substitution
