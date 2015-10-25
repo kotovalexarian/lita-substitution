@@ -61,11 +61,41 @@ module Lita
         end
       end
 
-      def parse(text)
-        ['randcase |  |  |', {
-          11 => 'fake name name',
-          14 => 'fake lorem sentence',
-        }]
+      def parse(s)
+        command = ''
+        substs = {}
+        last = nil
+        i = 0
+        deep = 0
+
+        loop do
+          case s[i]
+          when nil then break
+
+          when '$'
+            if s[i + 1] == '('
+              last = substs[command.length] = '' if deep == 0
+              i += 1
+              deep += 1
+            else
+              (deep > 0 ? last : command) << '$'
+            end
+
+          when ')'
+            if deep > 0
+              deep -= 1
+            else
+              command << ')'
+            end
+
+          else
+            (deep > 0 ? last : command) << s[i]
+          end
+
+          i += 1
+        end
+
+        [command, substs]
       end
 
       Lita.register_handler(self)
