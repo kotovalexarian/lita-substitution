@@ -14,7 +14,9 @@ module Lita
       # REGEXP = /(^|[^\$])\$\(/
       REGEXP = /\$\(/
 
-      route(REGEXP, command: true, substitution: true) do |response|
+      route(REGEXP, :handle, command: true, substitution: true)
+
+      def handle(response)
         message = response.message
         source = message.source
 
