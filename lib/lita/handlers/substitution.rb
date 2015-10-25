@@ -15,20 +15,26 @@ module Lita
       route(REGEXP, command: true, substitution: true) do |response|
         message = response.message
         source = message.source
+
         command, substitutions = parse(message.body)
+        shift = 0
 
         substitutions.each do |position, subcommand|
           channel = Channel.new(robot, subcommand, source)
           channel.command!
 
           result = ''
+          delta = 0
           channel.on_reply do |*strings|
-            result << strings.flatten.join("\n")
+            s = strings.flatten.join("\n")
+            delta += s.length
+            result << s
           end
 
           robot.receive(channel)
 
-          command.insert(position, result)
+          command.insert(shift + position, result)
+          shift += delta
         end
 
         channel = Channel.new(robot, command, source)
