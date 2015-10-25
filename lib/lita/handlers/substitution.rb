@@ -60,7 +60,10 @@ module Lita
       end
 
       def parse(text)
-        ['randcase ', { 9 => 'fake lorem sentence' }]
+        ['randcase |  |  |', {
+          11 => 'fake name name',
+          14 => 'fake lorem sentence',
+        }]
       end
 
       Lita.register_handler(self)
