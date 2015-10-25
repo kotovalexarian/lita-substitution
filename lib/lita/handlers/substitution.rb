@@ -16,7 +16,7 @@ module Lita
 
       route(REGEXP, :handle, command: true, substitution: true)
 
-      def handle(response)
+      def handle(response) # rubocop:disable MethodLength, AbcSize
         message = response.message
         source = message.source
 
