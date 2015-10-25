@@ -1,3 +1,6 @@
 AllCops:
   Exclude:
     - vendor/**/*
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent

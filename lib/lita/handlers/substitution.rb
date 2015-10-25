@@ -51,6 +51,9 @@ module Lita
 
     protected
 
+      ##
+      # Message which allows subscription to the answers
+      #
       class Channel < Message
         def reply(*strings)
           @on_reply.call(*strings) if @on_reply
@@ -61,6 +64,8 @@ module Lita
         end
       end
 
+      # rubocop:disable AbcSize, CyclomaticComplexity
+      # rubocop:disable MethodLength, PerceivedComplexity
       def parse(s)
         command = ''
         substs = {}
