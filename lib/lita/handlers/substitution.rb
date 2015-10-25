@@ -10,7 +10,9 @@ module Lita
     # Shell-like command substitution for the Lita chat bot.
     #
     class Substitution < Handler
-      REGEXP = /(^|[^\$])\$\(/
+      # TODO
+      # REGEXP = /(^|[^\$])\$\(/
+      REGEXP = /\$\(/
 
       route(REGEXP, command: true, substitution: true) do |response|
         message = response.message
