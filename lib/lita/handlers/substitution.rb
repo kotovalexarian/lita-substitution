@@ -79,7 +79,11 @@ module Lita
 
           when '$'
             if s[i + 1] == '('
-              last = substs[command.length] = '' if deep == 0
+              if deep > 0
+                last << '$('
+              else
+                last = substs[command.length] = ''
+              end
               i += 1
               deep += 1
             else
@@ -88,6 +92,7 @@ module Lita
 
           when ')'
             if deep > 0
+              last << ')' if deep > 1
               deep -= 1
             else
               command << ')'
