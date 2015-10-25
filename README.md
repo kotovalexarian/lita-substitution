@@ -39,5 +39,5 @@ At first, see the documentation for Lita: http://docs.lita.io/
 Add **lita-substitution** to your Lita instance's Gemfile:
 
 ```ruby
-gem 'lita-substitution', '~> 0.1.0'
+gem 'lita-substitution', '~> 0.1.1'
 ```
