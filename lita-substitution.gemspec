@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'lita-substitution'
-  spec.version       = '0.0.0'
+  spec.version       = '0.1.0'
   spec.authors       = ['Braiden Vasco']
   spec.email         = ['braiden-vasco@users.noreply.github.com']
 
